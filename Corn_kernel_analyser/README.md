@@ -11,4 +11,4 @@ A deep learning project to analyze corn kernel quality using YOLO and display re
 - Backend: FastAPI
 - Deployment: Modal / Local
 
-## 📂 Project Structure
+
