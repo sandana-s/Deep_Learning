@@ -1,0 +1,193 @@
+/* ====== Global Layout ====== */
+.app-container {
+  display: flex;
+  /* Change height from 100vh for a "floating" feel */
+  min-height: 90vh; /* Use min-height to ensure content fits */
+  max-height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(135deg, #6B9FE8 0%, #8B7EC8 50%, #A87ECC 100%);
+  padding: 24px;
+  /* Center the main content box (when PDF is uploaded) */
+  align-items: center;
+  justify-content: center;
+}
+/* ====== Sidebar ====== */
+.sidebar {
+  /* Reduce the width for a slimmer sidebar */
+  width: 250px; 
+  min-width: 250px; /* Prevent shrinking */
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px;
+  /* Remove rounded corners on the right to align with chat-section */
+  border-radius: 24px 0 0 24px; 
+  box-shadow: none; /* Shadow is on the parent now */
+  /* Add a subtle separator */
+  border-right: 1px solid #e0e0e0; 
+}
+
+.sidebar h3 {
+  color: #1F4A5E;
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+.file-name {
+  color: #347C98;
+  font-weight: 500;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+
+.no-file {
+  color: #999;
+  font-size: 0.85rem;
+  margin-bottom: 10px;
+}
+
+/* ====== Upload Button ====== */
+.upload-btn {
+  background: linear-gradient(90deg, #EF4444, #DC2626);
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 20px;
+  transition: 0.3s ease;
+  cursor: pointer;
+  width: 100%;
+  font-size: 0.95rem;
+}
+
+.upload-btn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(90deg, #DC2626, #B91C1C);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+/* ====== Chat Section ====== */
+.chat-section {
+  /* Set a max-width to ensure the chat area is also contained */
+  width: 100%;
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 24px;
+  /* Adjust border-radius to align with sidebar */
+  border-radius: 0 24px 24px 0; 
+}
+
+.chat-view-container {
+  display: flex;
+  /* New max-width for the entire sidebar + chat area */
+  max-width: 1000px; 
+  width: 100%;
+  height: 90vh; /* Set a fixed height for the whole chat box */
+  border-radius: 24px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  overflow: hidden; /* Important for the rounded corners */
+}
+
+/* ====== Header (Bot Section) ====== */
+.bot-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
+  background: linear-gradient(90deg, #8DE3F0, #347C98);
+  padding: 20px 24px;
+  border-radius: 20px;
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.bot-header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+}
+
+/* ====== Upload View ====== */
+.upload-view {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 40px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  margin: auto;
+  max-width: 700px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+.upload-subtitle {
+  color: #666;
+  margin-bottom: 40px;
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* ====== Responsive ====== */
+@media (max-width: 768px) {
+  .app-container {
+    flex-direction: column;
+    padding: 12px;
+  }
+
+  .sidebar {
+    width: 100%;
+    border-radius: 24px 24px 0 0;
+    margin-bottom: 0;
+  }
+
+  .chat-section {
+    border-radius: 0 0 24px 24px;
+  }
+  
+  .bot-header h1 {
+    font-size: 1.5rem;
+  }
+}
+/* Wrap the entire bot area into a centered card */
+.chat-wrapper {
+  width: 80%;
+  max-width: 1100px;
+  margin: auto;
+  border-radius: 24px;
+  overflow: hidden;
+  height: 80vh;
+  display: flex;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+}
+
+/* Make sidebar look tighter & bigger text */
+.sidebar h3 {
+  font-size: 1.05rem;   /* slightly bigger */
+  margin-bottom: 4px;   /* reduced gap */
+}
+
+.file-name,
+.no-file {
+  margin-bottom: 6px;   /* reduced space */
+}
+
+/* Reduce padding inside sidebar */
+.sidebar {
+  padding: 18px;
+}
+
+/* Center the whole layout */
+.app-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
