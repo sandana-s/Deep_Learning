@@ -60,7 +60,7 @@ Keep the output clean, short, and fast to generate."""
         slide_parts = [s.strip() for s in slide_parts if s.strip()]
 
         if len(slide_parts) < 3:
-            return "⚠️ Failed to generate 3 slides. Try again."
+            return " Failed to generate 3 slides. Try again."
 
         prs = Presentation()
 
