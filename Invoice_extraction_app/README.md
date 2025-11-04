@@ -36,24 +36,22 @@ This is a Multi-Agent AI application that extracts invoice details from uploaded
 
 # 🏗 Installation
 
-git clone https://github.com/sandana-s/invoice_extraction.git
-cd invoice-extraction-app
-pip install -r requirements.txt
+-git clone https://github.com/sandana-s/invoice_extraction.git
+-cd invoice-extraction-app
+-pip install -r requirements.txt
 
 
-OPENAI_API_KEY="your_openai_api_key_here"
+-OPENAI_API_KEY="your_openai_api_key_here"
 
 -python app.py
 
 ## Project Structure
 
-|-- app.py
-|-- README.md
-|-- requirements.txt
-|-- .env
+-|-- app.py
+-|-- README.md
+-|-- requirements.txt
+-|-- .env
 
-
-|-- .env (ignored - created by user)
 
 
 
