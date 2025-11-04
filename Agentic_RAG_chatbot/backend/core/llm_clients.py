@@ -10,10 +10,10 @@ import numpy as np
 class LLMClient:
     """
     Optimized Ollama client:
-    ✅ Persistent connection
-    ✅ Local + FAISS cache
-    ✅ Robust retry logic
-    ✅ Works with streaming JSON responses
+     Persistent connection
+     Local + FAISS cache
+     Robust retry logic
+     Works with streaming JSON responses
     """
 
     def __init__(self, model_name="gemma2:2b", use_faiss_cache=True):
@@ -39,13 +39,13 @@ class LLMClient:
             print(f"⚙️ Warming up {self.model_name} model...")
             try:
                 resp = await self.generate("Hello! This is a warm-up prompt.")
-                if not resp.startswith("⚠️ Error"):
+                if not resp.startswith(" Error"):
                     self._is_warmed_up = True
-                    print("✅ Model warm-up complete.")
+                    print(" Model warm-up complete.")
                 else:
                     raise RuntimeError(resp)
             except Exception as e:
-                print(f"⚠️ Warm-up failed: {e}")
+                print(f" Warm-up failed: {e}")
 
     # ------------------------------------------------------------
     @staticmethod
@@ -83,12 +83,12 @@ class LLMClient:
         full_prompt = f"{system_prompt}\n\nUser Query:\n{prompt}".strip()
         key = self._hash_prompt(system_prompt, prompt)
 
-        # 🔹 1. Check local cache first
+        #  1. Check local cache first
         if key in self.response_cache:
             print("⚡ Using cached response (local dict)")
             return self.response_cache[key]
 
-        # 🔹 2. Check FAISS semantic cache
+        # 2. Check FAISS semantic cache
         if self.use_faiss_cache and self.faiss_cache.index is not None:
             try:
                 query_embedding = self._safe_embedding(prompt)
@@ -96,12 +96,12 @@ class LLMClient:
                 if similar_chunks:
                     result_text = similar_chunks[0].get("text")
                     if result_text:
-                        print("🧠 Using FAISS semantic cache")
+                        print(" Using FAISS semantic cache")
                         return result_text
             except Exception as e:
-                print(f"⚠️ FAISS cache skipped due to error: {e}")
+                print(f" FAISS cache skipped due to error: {e}")
 
-        # 🔹 3. Prepare payload for Ollama
+        # 3. Prepare payload for Ollama
         max_tokens = 16 if "summarize" not in prompt.lower() else 64
         payload = {
             "model": self.model_name,
@@ -111,7 +111,7 @@ class LLMClient:
             "temperature": 0.3,
         }
 
-        # 🔹 4. Try up to 3 times
+        # 4. Try up to 3 times
         for attempt in range(3):
             try:
                 client = await self._get_client()
@@ -140,15 +140,15 @@ class LLMClient:
                             emb = self._safe_embedding(prompt)
                             self.faiss_cache.add_vector(emb, result_text)
                         except Exception as e:
-                            print(f"⚠️ Skipping FAISS add_vector due to: {e}")
+                            print(f"Skipping FAISS add_vector due to: {e}")
 
                     return result_text
 
             except Exception as e:
-                print(f"⚠️ Ollama error (attempt {attempt + 1}/3): {e}")
+                print(f" Ollama error (attempt {attempt + 1}/3): {e}")
                 await asyncio.sleep(2)
 
-        return "⚠️ Error: Ollama not responding. Please ensure `ollama serve` is running and the model is pulled."
+        return " Error: Ollama not responding. Please ensure `ollama serve` is running and the model is pulled."
 
     # ------------------------------------------------------------
     async def close(self):
@@ -157,5 +157,5 @@ class LLMClient:
             await self._client.aclose()
 
 
-# ✅ Shared instance for use across agents
+# Shared instance for use across agents
 llm_client = LLMClient(model_name="gemma2:2b",use_faiss_cache=False)
