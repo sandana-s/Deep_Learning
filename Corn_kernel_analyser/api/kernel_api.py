@@ -34,13 +34,13 @@ def load_model():
             try:
                 model = YOLO(path)
                 model_path = path
-                print(f"✅ Model loaded from: {path}")
+                print(f" Model loaded from: {path}")
                 return True
             except Exception as e:
-                print(f"❌ Failed to load model from {path}: {e}")
+                print(f" Failed to load model from {path}: {e}")
                 continue
 
-    print("⚠️ Could not load model from any path")
+    print(" Could not load model from any path")
     return False
 
 # Load the model on startup
