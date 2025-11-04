@@ -32,8 +32,8 @@ if uploaded_file:
                     st.error(f"API error {response.status_code}: {response.text}")
 
             except requests.exceptions.Timeout:
-                st.error("API request timed out ⏳")
+                st.error("API request timed out ")
             except requests.exceptions.ConnectionError:
-                st.error("Could not connect to API ❌")
+                st.error("Could not connect to API ")
             except Exception as e:
                 st.error(f"Unexpected error: {e}")
