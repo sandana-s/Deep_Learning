@@ -21,14 +21,14 @@ from backend.core.llm_clients import llm_client
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    print("🚀 Starting up Agentic RAG Chatbot...")
+    print("Starting up Agentic RAG Chatbot...")
     await llm_client.warm_up()   # preload Ollama model for instant response
-    print("🔥 Model is warmed up and FAISS initialized.")
+    print("Model is warmed up and FAISS initialized.")
     yield
     await llm_client.close()
-    print("🛑 Shutting down Agentic RAG Chatbot...")
+    print("Shutting down Agentic RAG Chatbot...")
 
-app = FastAPI(title="⚡ Agentic RAG Chatbot", lifespan=lifespan)
+app = FastAPI(title="Agentic RAG Chatbot", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
@@ -73,7 +73,7 @@ class ChatResponse(BaseModel):
 
 @app.get("/")
 async def root():
-    return {"message": "Agentic RAG Chatbot API is running ⚡"}
+    return {"message": "Agentic RAG Chatbot API is running "}
 
 # ---------- Upload PDF and Create FAISS Index ---------- #
 @app.post("/upload-pdf")
@@ -103,7 +103,7 @@ async def upload_pdf(file: UploadFile = File(...)):
         last_uploaded_file = file.filename
 
         return {
-            "message": "✅ PDF uploaded and processed successfully",
+            "message": "PDF uploaded and processed successfully",
             "filename": file.filename,
             "text_length": len(current_pdf_text),
             "chunks_created": len(chunks),
